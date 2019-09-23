@@ -29,7 +29,7 @@ NVIDIA-CONTAINER-RUNTIMEがインストールされていることが前提。
 * **GPU利用制限なし(all GPUs)**  
 `docker run -it --rm --gpus all ubuntu nvidia-smi`
 * **特定のGPUを利用**  
-`docker run -it --rm --gpus device=0,2`
+`docker run -it --rm --gpus device="0,2"`
 #### CUDA images
 nvidia-driverのversionが合っていれば、cuda toolkit不要でCUDAを各コンテナで個別に設定できる。
 https://github.com/NVIDIA/nvidia-docker/wiki/CUDA
