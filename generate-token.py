@@ -1,3 +1,4 @@
+# coding: utf-8
 import IPython
 from argparse import ArgumentParser
 
