@@ -2,7 +2,7 @@ Dockerで実験環境を管理する
 
 ## [リソースの管理(Memory, CPUs, and GPUs)](https://docs.docker.com/config/containers/resource_constraints/)
 Dockerコンテナを起動するときのオプションで、コンテナ(アプリケーション)が使用できるリソースに
-制限をかけることができます。
+制限をかけることができます。内部的にはCgroupsによって動作しています。
 ### Memory
 Host上のメモリをコンテナが食い尽くし、Out of Memoryを引き起こすことを未然に防ぐために以下の方法を試します。
 コマンドでは数字＋単位(e.g. `b`,`k`,`m`,`g`)で容量を指定します。
