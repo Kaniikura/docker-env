@@ -33,3 +33,6 @@ NVIDIA-CONTAINER-RUNTIMEがインストールされていることが前提。
 #### CUDA images
 nvidia-driverのversionが合っていれば、cuda toolkit不要でCUDAを各コンテナで個別に設定できる。
 https://github.com/NVIDIA/nvidia-docker/wiki/CUDA
+#### nvidia-smiについて
+Dockerではコンテナ内部からHost側のプロセスを見ることができないため、`nvidia-smi`を叩けません。  
+解決策は①Host側で叩くか、②runオプションで`--pid=host`を使うかの２つです。 
