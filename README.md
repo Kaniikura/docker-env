@@ -6,7 +6,8 @@ Dockerで実験環境を管理する
 `export HASHPASS=<トークン>`として環境変数に設定する。
 * ポート設定
 `export PORT=<普段使っているポート番号>`
-2. **docker-composeによるビルド**  
+2. **docker-composeによるビルド** 
+使用したい環境の方に入ります(`cd tf2` or `cd pytorch`)
 `docker-compose build --no-cache`
 3. **コンテナの起動**  
 `docker-compose up -d`
