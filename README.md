@@ -1,5 +1,19 @@
 Dockerで実験環境を管理する
-
+# How to use
+1. **jupyter notebookの設定** 
+* パスワード 
+`python generate_token.py --password <設定したいパスワード>`を実行し出力されたハッシュ値を、  
+`export HASHPASS=<ハッシュ値>`として環境変数に設定する。
+* ポート設定
+`export PORT=<普段使っているポート番号>`
+2. docker-composeによるビルド
+`docker-compose build --no-cache`
+3. コンテナの起動
+`docker-compose up -d`
+4. リモートマシンからjupyter notebookに接続
+`localhost:<設定したポート番号>`
+  
+# 以下参考
 ## [リソースの管理(Memory, CPUs, and GPUs)](https://docs.docker.com/config/containers/resource_constraints/)
 Dockerコンテナを起動するときのオプションで、コンテナ(アプリケーション)が使用できるリソースに
 制限をかけることができます。内部的にはCgroupsによって動作しています。
