@@ -6,11 +6,11 @@ Dockerで実験環境を管理する
 `export HASHPASS=<トークン>`として環境変数に設定する。
 * ポート設定
 `export PORT=<普段使っているポート番号>`
-2. docker-composeによるビルド  
+2. **docker-composeによるビルド**  
 `docker-compose build --no-cache`
-3. コンテナの起動  
+3. **コンテナの起動**  
 `docker-compose up -d`
-4. リモートマシンからjupyter notebookに接続  
+4. **リモートマシンからjupyter notebookに接続**  
 `localhost:<設定したポート番号>`
   
 # 以下参考
