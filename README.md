@@ -2,8 +2,8 @@ Dockerで実験環境を管理する
 # How to use
 1. **jupyter notebookの設定** 
 * パスワード 
-`python generate_token.py --password <設定したいパスワード>`を実行し出力されたハッシュ値を、  
-`export HASHPASS=<ハッシュ値>`として環境変数に設定する。
+`python generate_token.py --password <設定したいパスワード>`を実行し出力されたトークンを、  
+`export HASHPASS=<トークン>`として環境変数に設定する。
 * ポート設定
 `export PORT=<普段使っているポート番号>`
 2. docker-composeによるビルド
