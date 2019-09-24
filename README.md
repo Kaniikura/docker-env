@@ -9,7 +9,7 @@ Dockerで実験環境を管理する
 3. ~**コンテナの起動**~  
 ~`docker-compose up -d`~  
 [docker-composeのサポートがDocker本体に追いついていない](https://forums.docker.com/t/how-to-use-gpus-option-with-docker-compose/78558)ため、以下で(1)イメージの作成、(2)コンテナの起動を行う。すでにイメージが存在する場合、(1)は飛ばしてもいい。  
-(1)`sudo docker build . -t <イメージ名>` (pytorch_cuda10というイメージが既に作成してあります) 
+(1)`sudo docker build . -t <イメージ名>` (pytorch_cuda10というイメージが既に作成してあります)   
 (2)`sudo docker run -it -d -p $<ポート番号>:8888 --rm --memory="32g" --memory-swap="-1" --cpus="8." --gpus=all <イメージ名> `
 4. **リモートマシンからjupyter notebookに接続**  
 `docker exec -it <コンテナのID> /bin/bash`  
