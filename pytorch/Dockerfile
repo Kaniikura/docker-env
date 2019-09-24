@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
     sudo \
     git \
     bzip2 \
+    screen \
     libfontconfig1 \
     libxrender1 \
     libsm6 \
