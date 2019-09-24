@@ -10,9 +10,10 @@ Dockerで実験環境を管理する
 ~使用したい環境の方に入ります(`cd tf2` or `cd pytorch`)。  
 `docker-compose build --no-cache`を実行。~
 ~3. **コンテナの起動**  
-`docker-compose up -d`~
-[docker-composeのサポートがDocker本体に追いついていない](https://forums.docker.com/t/how-to-use-gpus-option-with-docker-compose/78558)ため、docker runで作成、起動を行う。
-`docker run -it -d -p `
+`docker-compose up -d`~  
+[docker-composeのサポートがDocker本体に追いついていない](https://forums.docker.com/t/how-to-use-gpus-option-with-docker-compose/78558)ため、以下で作成、起動を行う。  
+`sudo docker build . -t pytorch_cuda10`  
+`sudo docker run -it -d -p $PORT:8888 --rm --memory="32g" --cpus="4." --gpus=all pytorch_cuda10 `
 4. **リモートマシンからjupyter notebookに接続**  
 `localhost:<設定したポート番号>`
   
