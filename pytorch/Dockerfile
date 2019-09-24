@@ -53,4 +53,5 @@ RUN conda install -y -c pytorch \
  
 RUN pip install opencv-python \
     scikit-learn \
-    matplotlib
+    matplotlib \
+    pandas
