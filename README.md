@@ -12,7 +12,7 @@ Dockerで実験環境を管理する
 (1)`sudo docker build . -t <イメージ名>` (pytorchを使う人は、pytorch_cuda10というイメージがあるので使ってください)   
 (2)`sudo docker run -it -d -v $(pwd):/work/share -p <ポート番号>:8888 --rm --memory="32g" --memory-swap="-1" --cpus="8." --gpus=all <イメージ名> `
 4. **リモートマシンからjupyter notebookに接続**  
-`docker exec -it <コンテナのID> /bin/bash`  
+`sudo docker exec -it <コンテナのID> /bin/bash`  
 `jupyter notebook --ip=0.0.0.0 --allow-root --no-browser --NotebookApp.password=<設定したトークン>`  
 で起動。「Ctrl + p + q」でコンテナから抜ける。    
 ローカルマシンからnotebookにアクセス。
