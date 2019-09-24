@@ -5,7 +5,11 @@ RUN apt-get update && apt-get install -y \
     curl \
     sudo \
     git \
-    bzip2
+    bzip2 \
+    libfontconfig1 \
+    libxrender1 \
+    libsm6 \
+    libxext6
 
 # ワークディレクトリを作成
 RUN mkdir /work
@@ -44,4 +48,7 @@ RUN conda install -y -c pytorch \
     "pytorch=1.2.0=py3.6_cuda10.0.130_cudnn7.6.2_0" \
     "torchvision=0.4.0=py36_cu100" \
     jupyter \
+    matplotlib \
+    opencv-python \
+    scikit-learn \
  && conda clean -ya
