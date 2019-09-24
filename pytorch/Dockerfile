@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     sudo \
     git \
+    bzip2
 
 # ワークディレクトリを作成
 RUN mkdir /work
@@ -12,7 +13,7 @@ WORKDIR /work
 
 # "user"という名前の非rootユーザーを作成しスイッチする
 RUN adduser --disabled-password --gecos '' --shell /bin/bash user \
- && chown -R user:user /app
+ && chown -R user:user /work
 RUN echo "user ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/90-user
 USER user
 
