@@ -18,6 +18,12 @@ Dockerで実験環境を管理する
 ローカルマシンからnotebookにアクセス。
   
 ## 以下参考
+runコマンドのオプション説明
+`-it` コンテナの標準出力をshellにつなぐ  
+`-d` 起動後にデタッチ    
+`-v <Host上のマウントしたいディレクトリ>:<コンテナの場所>` コンテナでHost上のファイルを触れるようにする  
+`--rm` コンテナをstopした時に自動で削除  
+
 ### [リソースの管理(Memory, CPUs, and GPUs)](https://docs.docker.com/config/containers/resource_constraints/)
 Dockerコンテナを起動するときのオプションで、コンテナ(アプリケーション)が使用できるリソースに
 制限をかけることができます。内部的にはCgroupsによって動作しています。
