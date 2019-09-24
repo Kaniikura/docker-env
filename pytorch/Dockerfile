@@ -48,7 +48,8 @@ RUN conda install -y -c pytorch \
     "pytorch=1.2.0=py3.6_cuda10.0.130_cudnn7.6.2_0" \
     "torchvision=0.4.0=py36_cu100" \
     jupyter \
-    matplotlib \
-    opencv-python \
-    scikit-learn \
  && conda clean -ya
+ 
+RUN pip install opencv-python \
+    scikit-learn \
+    matplotlib
