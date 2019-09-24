@@ -14,7 +14,7 @@ Dockerで実験環境を管理する
 4. **リモートマシンからjupyter notebookに接続**  
 `docker exec -it <コンテナのID> /bin/bash`  
 `jupyter notebook --ip=0.0.0.0 --allow-root --no-browser --NotebookApp.password=<設定したトークン>`  
-で起動。「Ctrl + p + q」でコンテナから抜ける。  
+で起動。「Ctrl + p + q」でコンテナから抜ける。    
 ローカルマシンからnotebookにアクセス。
   
 ## 以下参考
