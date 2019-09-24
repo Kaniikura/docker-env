@@ -1,6 +1,6 @@
 version: "3"
 services:
-  jupyter:
+  pytorch_cuda10:
     build: .
     volumes: # カウントディレクトリをコンテナの/home/jovyan/workにマウント
       - $PWD:/home/jovyan/work
