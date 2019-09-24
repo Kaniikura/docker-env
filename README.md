@@ -3,14 +3,14 @@ Dockerで実験環境を管理する
 1. **jupyter notebookの設定** 
 * パスワード  
 `python generate_token.py --password <設定したいパスワード>`を実行し出力されたトークンをメモしておく。  
-2. ~**docker-composeによるビルド**~  
-~使用したい環境の方に入ります(`cd tf2` or `cd pytorch`)。  
-`docker-compose build --no-cache`を実行。~
+2. **docker-composeによるビルド**  
+使用したい環境の方に入ります(~`cd tf2`~ or `cd pytorch`)[tf2は後に対応予定です]  
+~`docker-compose build --no-cache`を実行。~
 3. ~**コンテナの起動**~  
 ~`docker-compose up -d`~  
 [docker-composeのサポートがDocker本体に追いついていない](https://forums.docker.com/t/how-to-use-gpus-option-with-docker-compose/78558)ため、以下で作成、起動を行う。  
 `sudo docker build . -t pytorch_cuda10`  
-`sudo docker run -it -d -p $<ポート番号>:8888 --rm --memory="32g" --cpus="8." --gpus=all pytorch_cuda10 `
+`sudo docker run -it -d -p $<ポート番号>:8888 --rm --memory="32g" --memory-swap="-1" --cpus="8." --gpus=all pytorch_cuda10 `
 4. **リモートマシンからjupyter notebookに接続**  
 `docker exec -it <コンテナのID> /bin/bash`  
 `jupyter notebook --ip=0.0.0.0 --allow-root --no-browser --NotebookApp.password=<設定したトークン>`  
