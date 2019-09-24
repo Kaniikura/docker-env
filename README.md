@@ -4,7 +4,7 @@ Dockerで実験環境を管理する
 * パスワード  
 `python generate_token.py --password <設定したいパスワード>`を実行し出力されたトークンをメモしておく。  
 2. **docker-composeによるビルド**  
-使用したい環境の方に入ります(~`cd tf2`~ or `cd pytorch`)[tf2は後に対応予定です]  
+使用したい環境の方に入ります(`cd tf2` or `cd pytorch`)
 ~`docker-compose build --no-cache`を実行。~
 3. ~**コンテナの起動**~  
 ~`docker-compose up -d`~  
