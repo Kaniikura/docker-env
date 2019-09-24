@@ -2,8 +2,7 @@ Dockerで実験環境を管理する
 ## How to use
 1. **jupyter notebookの設定** 
 * パスワード  
-`python generate_token.py --password <設定したいパスワード>`を実行し出力されたトークンを、  
-`export HASHPASS=<トークン>`として環境変数に設定する。
+`python generate_token.py --password <設定したいパスワード>`を実行し出力されたトークンをメモしておく。
 * ポート設定
 `export PORT=<普段使っているポート番号>`  
 2. ~**docker-composeによるビルド**~  
@@ -15,6 +14,9 @@ Dockerで実験環境を管理する
 `sudo docker build . -t pytorch_cuda10`  
 `sudo docker run -it -d -p $PORT:8888 --rm --memory="32g" --cpus="4." --gpus=all pytorch_cuda10 `
 4. **リモートマシンからjupyter notebookに接続**  
+`docker exec -it <コンテナのID> /bin/bash`  
+`jupyter notebook --ip=0.0.0.0 --allow-root --no-browser --NotebookApp.password=<設定したトークン>`  
+「Ctrl + p」 or 「Ctrl + q」で抜ける。  
 `localhost:<設定したポート番号>`
   
 ## 以下参考
