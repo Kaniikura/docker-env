@@ -20,7 +20,7 @@ WORKDIR /work
 
 # "nobody"という名前の非rootユーザーを作成しスイッチする
 RUN adduser --disabled-password --gecos '' --shell /bin/bash nobody \
- && chown -R nobody:nobody /work
+ && chown -R nobody:nobody /work \
  && echo "nobody ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/90-user
 USER nobody
 
