@@ -3,16 +3,14 @@ Dockerで実験環境を管理する
 1. **jupyter notebookの設定** 
 * パスワード  
 `python generate_token.py --password <設定したいパスワード>`を実行し出力されたトークンをメモしておく。  
-2. **docker-composeによるビルド**  
-使用したい環境の方に入ります(`cd tf2` or `cd pytorch`)  
-~`docker-compose build --no-cache`を実行。~
-3. ~**コンテナの起動**~  
-~`docker-compose up -d`~  
-[docker-composeのサポートがDocker本体に追いついていない](https://forums.docker.com/t/how-to-use-gpus-option-with-docker-compose/78558)ため、暫定策として以下で(1)イメージの作成、(2)コンテナの起動を行う。すでにイメージが存在する場合、(1)は飛ばしてもいい。  
-(1)`sudo docker build . -t <イメージ名>` (pytorchを使う人は、pytorch_cuda10というイメージがあるので使ってください)   
-(2)`sudo docker run -it -d -v $(pwd):/work/share -p <ポート番号>:8888 --rm --memory="32g" --memory-swap="-1" --cpus="8." --gpus=all <イメージ名> `
+2. **docker imageのビルド(※ 既存イメージ(pytorch_cuda10、 tf2.0はあるので、オリジナルのイメージを作りたい人のみ)**  
+使用したい環境の方に入ります(`cd tf2` or `cd pytorch`)
+vimなどでDockerfileの編集。
+`sudo docker build . -t <イメージ名>`でビルド。
+3. **コンテナの起動**  
+`sudo docker run -it -d -v $(pwd):/work/share -p <ポート番号>:8888 --rm --memory="32g" --memory-swap="-1" --cpus="8." --gpus=all <イメージ名> `
 4. **リモートマシンからjupyter notebookに接続**  
-`sudo docker exec -it <コンテナのID> /bin/bash`  
+`sudo docker exec -it <コンテナのID> /bin/bash`
 `jupyter notebook --ip=0.0.0.0 --allow-root --no-browser --NotebookApp.password=<設定したトークン>`  
 で起動。「Ctrl + p + q」でコンテナから抜ける。    
 ローカルマシンからnotebookにアクセス。
