@@ -11,7 +11,7 @@ vimなどでDockerfileの編集。
 4. **リモートマシンからjupyter notebookに接続**  
 `sudo docker exec -it <コンテナのID> /bin/bash`でコンテナに入る。  
 `jupyter notebook --ip=0.0.0.0 --allow-root --no-browser --NotebookApp.password=<設定したトークン>`  
-で起動。「Ctrl + p + q」でコンテナから抜ける。    
+で起動。「Ctrl + p」 -> 「Ctrl + q」でコンテナから抜ける。    
 ローカルマシンからnotebookにアクセス。
   
 ## 以下参考
