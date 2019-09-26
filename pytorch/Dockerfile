@@ -18,11 +18,11 @@ RUN apt-get update && apt-get install -y \
 RUN mkdir /work
 WORKDIR /work
 
-# "user"という名前の非rootユーザーを作成しスイッチする
-RUN adduser --disabled-password --gecos '' --shell /bin/bash user \
- && chown -R user:user /work
-RUN echo "user ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/90-user
-USER user
+# "nobody"という名前の非rootユーザーを作成しスイッチする
+RUN adduser --disabled-password --gecos '' --shell /bin/bash nobody \
+ && chown -R nobody:nobody /work
+ && echo "nobody ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/90-user
+USER nobody
 
 # コンテナ内の全ユーザーのhomeディレクトリとして"/home/user"を設定
 ENV HOME=/home/user
@@ -52,8 +52,7 @@ RUN conda install -y -c pytorch \
     "torchvision=0.4.0=py36_cu100" \
     jupyter \
  && conda clean -ya
- 
-RUN pip install opencv-python \
+ && pip install opencv-python \
     scikit-learn \
     matplotlib \
     pandas
