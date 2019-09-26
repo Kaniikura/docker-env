@@ -48,12 +48,12 @@ RUN /home/user/miniconda/bin/conda install conda-build=3.18.9=py36_3 \
  && /home/user/miniconda/bin/conda clean -ya
 
 # CUDA 10.0 & tensorflow2.0、その他もろもろのインストール
-RUN conda install -y -c cudatoolkit=10.0
+RUN conda install -y cudatoolkit=10.0 \
+ && conda clean -ya \
  && pip install tensorboard \
     tensorflow-gpu==2.0.0-rc0 \
     jupyter \
- && conda clean -ya
- && pip install opencv-python \
+    opencv-python \
     scikit-learn \
     matplotlib \
     pandas
