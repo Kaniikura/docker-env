@@ -2,7 +2,7 @@ Dockerで実験環境を管理する
 ## How to use
 1. **jupyter notebookのパスワード取得**    
 `python generate_token.py --password <設定したいパスワード>`を実行し出力されたトークンをメモしておく。  
-2. **docker imageのビルド(※ 既存イメージ(pytorch_cuda10、 tf2.0はあるので、オリジナルのイメージを作りたい人のみ)**  
+2. **docker imageのビルド**(※ 既存イメージ(pytorch_cuda10、 tf2.0)はあるので、オリジナルのイメージを作りたい人のみ)  
 使用したい環境の方に入ります(`cd tf2` or `cd pytorch`)  
 vimなどでDockerfileの編集。  
 `sudo docker build . -t <イメージ名>`でビルド。
