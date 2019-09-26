@@ -14,19 +14,21 @@ RUN apt-get update && apt-get install -y \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
-# ワークディレクトリを作成
-RUN mkdir /work
+# ワーク＆ホームディレクトリを作成
+RUN mkdir /work /home/user
 WORKDIR /work
 
-# "nobody"という名前の非rootユーザーを作成しスイッチする
-RUN adduser --disabled-password --gecos '' --shell /bin/bash nobody \
- && chown -R nobody:nobody /work \
- && echo "nobody ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/90-user
-USER nobody
-
+# "dockuser"という名前の非rootユーザーを作成
+ENV USERNAME "dockuser"
+RUN groupadd -g 61000 ${USERNAME} \
+ && useradd -g 61000 -l -M -s /bin/false -u 61000 ${USERNAME} \
+ && echo "${USERNAME}:*" | chpasswd \
+ && chown -R ${USERNAME}:${USERNAME} /work
 # コンテナ内の全ユーザーのhomeディレクトリとして"/home/user"を設定
 ENV HOME=/home/user
 RUN chmod 777 /home/user
+# ユーザーをスイッチ
+USER ${USERNAME}
 
 # Minicondaのインストール
 RUN curl -so ~/miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-4.7.10-Linux-x86_64.sh \
