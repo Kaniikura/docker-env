@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.0-base-ubuntu16.04
+FROM tensorflow/tensorflow:2.0.0rc0-gpu-py3-jupyter
 
 # 主要なユーティリティをインストール
 RUN apt-get update && apt-get install -y \
@@ -30,30 +30,13 @@ RUN chmod 777 /home/user
 # ユーザーをスイッチ
 USER ${USERNAME}
 
-# Minicondaのインストール
-RUN curl -so ~/miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-4.7.10-Linux-x86_64.sh \
- && chmod +x ~/miniconda.sh \
- && ~/miniconda.sh -b -p ~/miniconda \
- && rm ~/miniconda.sh
-ENV PATH=/home/user/miniconda/bin:$PATH
-ENV CONDA_AUTO_UPDATE_CONDA=false
-
-# Python 3.6 仮想環境
-RUN /home/user/miniconda/bin/conda create -y --name py36 python=3.6.9 \
- && /home/user/miniconda/bin/conda clean -ya
-ENV CONDA_DEFAULT_ENV=py36
-ENV CONDA_PREFIX=/home/user/miniconda/envs/$CONDA_DEFAULT_ENV
-ENV PATH=$CONDA_PREFIX/bin:$PATH
-RUN /home/user/miniconda/bin/conda install conda-build=3.18.9=py36_3 \
- && /home/user/miniconda/bin/conda clean -ya
-
-# CUDA 10.0 & tensorflow2.0、その他もろもろのインストール
-RUN conda install -y cudatoolkit=10.0 \
- && conda clean -ya \
- && pip install tensorboard \
-    tensorflow-gpu==2.0.0-rc0 \
+# その他もろもろのインストール
+RUN pip install --user tensorboard \
     jupyter \
     opencv-python \
     scikit-learn \
     matplotlib \
     pandas
+
+# 既に走っているnotebookセッションを止める
+CMD jupyter notebook stop 8888; bash
