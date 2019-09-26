@@ -5,24 +5,33 @@ RUN apt-get update && apt-get install -y \
     curl \
     sudo \
     git \
-    bzip2
+    bzip2 \
+    screen \
+    libfontconfig1 \
+    libxrender1 \
+    libsm6 \
+    libxext6 \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
-# ワークディレクトリを作成
-RUN mkdir /work
+# ワーク＆ホームディレクトリを作成
+RUN mkdir /work /home/user
 WORKDIR /work
 
-# "user"という名前の非rootユーザーを作成しスイッチする
-RUN adduser --disabled-password --gecos '' --shell /bin/bash user \
- && chown -R user:user /work
-RUN echo "user ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/90-user
-USER user
-
+# "dockuser"という名前の非rootユーザーを作成
+ENV USERNAME "dockuser"
+RUN groupadd -g 61000 ${USERNAME} \
+ && useradd -g 61000 -l -M -s /bin/false -u 61000 ${USERNAME} \
+ && echo "${USERNAME}:*" | chpasswd \
+ && chown -R ${USERNAME}:${USERNAME} /work
 # コンテナ内の全ユーザーのhomeディレクトリとして"/home/user"を設定
 ENV HOME=/home/user
 RUN chmod 777 /home/user
+# ユーザーをスイッチ
+USER ${USERNAME}
 
 # Minicondaのインストール
-RUN curl -so ~/miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh \
+RUN curl -so ~/miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-4.7.10-Linux-x86_64.sh \
  && chmod +x ~/miniconda.sh \
  && ~/miniconda.sh -b -p ~/miniconda \
  && rm ~/miniconda.sh
@@ -38,10 +47,13 @@ ENV PATH=$CONDA_PREFIX/bin:$PATH
 RUN /home/user/miniconda/bin/conda install conda-build=3.18.9=py36_3 \
  && /home/user/miniconda/bin/conda clean -ya
 
-
-# CUDA 10.0 & tensorflow2.0のインストール
+# CUDA 10.0 & tensorflow2.0、その他もろもろのインストール
 RUN conda install -y -c cudatoolkit=10.0
  && pip install tensorboard \
     tensorflow-gpu==2.0.0-rc0 \
     jupyter \
  && conda clean -ya
+ && pip install opencv-python \
+    scikit-learn \
+    matplotlib \
+    pandas
