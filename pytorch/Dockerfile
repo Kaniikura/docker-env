@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
 RUN mkdir /work /home/user
 WORKDIR /work
 
-# "dockuser"という名前の非rootユーザーを作成
+# "dockuser"という名前の非rootユーザーを作成(Host側でのuid, gidは61000番)
 ENV USERNAME "dockuser"
 RUN groupadd -g 61000 ${USERNAME} \
  && useradd -g 61000 -l -M -s /bin/false -u 61000 ${USERNAME} \
