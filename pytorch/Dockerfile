@@ -47,11 +47,11 @@ ENV PATH=$CONDA_PREFIX/bin:$PATH
 RUN /home/user/miniconda/bin/conda install conda-build=3.18.9=py36_3 \
  && /home/user/miniconda/bin/conda clean -ya
 
-# CUDA 10.0 & pytorch、その他もろもろのインストール
+# CUDA 10.1 & pytorch、その他もろもろのインストール
 RUN conda install -y -c pytorch \
-    cudatoolkit=10.0 \
-    pytorch= \
-    torchvision=0.4.0=py36_cu100 \
+    cudatoolkit=10.1 \
+    pytorch=1.4 \
+    torchvision \
     jupyter \
  && conda clean -ya \
  && pip install opencv-python \
