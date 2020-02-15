@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.0-base-ubuntu16.04
+FROM nvidia/cuda:10.1-base-ubuntu16.04
 
 # 主要なユーティリティをインストール
 RUN apt-get update && apt-get install -y \
@@ -50,11 +50,17 @@ RUN /home/user/miniconda/bin/conda install conda-build=3.18.9=py36_3 \
 # CUDA 10.0 & pytorch、その他もろもろのインストール
 RUN conda install -y -c pytorch \
     cudatoolkit=10.0 \
-    "pytorch=1.2.0=py3.6_cuda10.0.130_cudnn7.6.2_0" \
-    "torchvision=0.4.0=py36_cu100" \
+    pytorch= \
+    torchvision=0.4.0=py36_cu100 \
     jupyter \
  && conda clean -ya \
  && pip install opencv-python \
+    easydict \
     scikit-learn \
     matplotlib \
-    pandas
+    pandas \
+    sacred \
+    pretrainedmodels \
+    efficientnet-pytorch \
+    albumentations \
+    tensorboardx \
