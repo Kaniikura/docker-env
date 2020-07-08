@@ -6,12 +6,25 @@
 vimなどでDockerfileの編集。  
 `sudo docker build . -t <イメージ名>`でビルド。
 3. **コンテナの起動**  
-`sudo docker run -it -d -v $(pwd):/work/share -p <ポート番号>:8888 --rm --memory="32g" --memory-swap="-1" --cpus="8." --gpus=all <イメージ名> `
+`sudo docker run -it -d -v $(pwd):/work/share -p <ポート番号>:8888 --rm --memory="32g" --memory-swap="-1" --cpus="8." --gpus=all <イメージID> `
 4. **リモートマシンからjupyter notebookに接続**  
 `sudo docker exec -it <コンテナのID> /bin/bash`でコンテナに入る。  
 `jupyter notebook --ip=0.0.0.0 --allow-root --no-browser --NotebookApp.password=<設定したトークン>`  
 で起動。「Ctrl + p」 -> 「Ctrl + q」でコンテナから抜ける。    
 ローカルマシンからnotebookにアクセス。
+
+## テスト
+作成したDockerイメージが、GPUを利用した機械学習に対応するかテストするときは、
+```bash
+sudo docker run -it -d -v <このレポジトリへのPATH>:/work/share --rm --gpus="all" <イメージID>
+sudo docker exec -it <コンテナID> /bin/bash/
+```
+の後、コンテナの中で
+```bash
+python share/tests/pytorch_test.py
+````
+でMNISTを例とした動作が確認できます。
+
   
 ## 以下参考
 runコマンドのオプション説明  
@@ -19,6 +32,8 @@ runコマンドのオプション説明
 `-d` 起動後にデタッチ    
 `-v <Host上のマウントしたいディレクトリ>:<コンテナの場所>` コンテナでHost上のファイルを触れるようにする  
 `--rm` コンテナをstopした時に自動で削除  
+
+<イメージID>は`docker images`、<コンテナID>は`docker ps`コマンドでそれぞれ確認できます。
 
 ### [リソースの管理(Memory, CPUs, and GPUs)](https://docs.docker.com/config/containers/resource_constraints/)
 Dockerコンテナを起動するときのオプションで、コンテナ(アプリケーション)が使用できるリソースに
