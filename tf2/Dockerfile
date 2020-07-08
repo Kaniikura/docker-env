@@ -1,5 +1,5 @@
 # nvidia cudaイメージからビルドするとcuDNN関係でエラーが起きたので公式を利用
-FROM tensorflow/tensorflow:2.0.0rc0-gpu-py3-jupyter
+FROM tensorflow/tensorflow:2.3.0rc0-gpu-jupyter
 
 # 主要なユーティリティをインストール
 RUN apt-get update && apt-get install -y \
