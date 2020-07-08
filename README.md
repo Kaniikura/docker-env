@@ -23,7 +23,7 @@ sudo docker exec -it <コンテナID> /bin/bash/
 ```bash
 python share/tests/pytorch_test.py #tfは'tensorflow_test.py' (tf2.0以上が必要)
 ````
-でMNISTを例とした動作が確認できます。
+でMNISTを例とした動作が確認できます。(GPUが利用できない場合はエラーで止まります)
 
   
 ## 以下参考
