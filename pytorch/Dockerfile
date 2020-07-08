@@ -47,7 +47,7 @@ ENV PATH=$CONDA_PREFIX/bin:$PATH
 RUN conda install conda-build \
    && conda clean -ya
 
-# CUDA 10.1 & pytorch、その他もろもろのインストール
+# CUDA 10.1 & pytorch=1.5.1、その他もろもろのインストール
 RUN conda install -y -c pytorch \
    cudatoolkit=10.1 \
    pytorch=1.5.1 \
