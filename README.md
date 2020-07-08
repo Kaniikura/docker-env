@@ -16,7 +16,7 @@ vimなどでDockerfileの編集。
 ## テスト
 作成したDockerイメージが、GPUを利用した機械学習に対応するかテストするときは、
 ```bash
-sudo docker run -it -d -v <このレポジトリへのPATH>:/work/share --rm --gpus="all" <イメージID>
+sudo docker run -it -d -v <このdocker-envディレクトリへのPATH>:/work/share -u `id -u $USER` --rm --gpus="all" <イメージID>
 sudo docker exec -it <コンテナID> /bin/bash/
 ```
 の後、コンテナの中で
