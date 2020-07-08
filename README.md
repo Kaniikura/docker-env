@@ -1,7 +1,7 @@
 ## How to use
 1. **jupyter notebookのパスワード取得**    
 `python generate_token.py --password <設定したいパスワード>`を実行し出力されたトークンをメモしておく。  
-2. **docker imageのビルド**(※ 汎用イメージ(pytorch_cuda10、 tf2.0)は作成済なので、オリジナルのイメージを作りたい人のみ)  
+2. **docker imageのビルド**(※ 汎用イメージ(pytorch1.5.1、 tf2.0)は作成済なので、オリジナルのイメージを作りたい人のみ)  
 使用したい環境の方に入ります(`cd tf2` or `cd pytorch`)  
 vimなどでDockerfileの編集。  
 `sudo docker build . -t <イメージ名>`でビルド。
