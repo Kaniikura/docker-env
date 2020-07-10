@@ -12,6 +12,10 @@ vimなどでDockerfileの編集。
 `jupyter notebook --ip=0.0.0.0 --allow-root --no-browser --NotebookApp.password=<設定したトークン>`  
 で起動。「Ctrl + p」 -> 「Ctrl + q」でコンテナから抜ける。    
 ローカルマシンからnotebookにアクセス。
+5. **コンテナの削除**  
+`sudo docker stop <コンテナのID>`で停止。  
+`--rm`オプションを付けずに起動した場合、stopしても再起動可能な状態で残るので`docker rm`コマンドで後始末します。  
+ちまちま消していかないと`docker container ls -a`を打ったときにお化けコンテナが大量に現れたりするので注意。
 
 ## テスト
 作成したDockerイメージが、GPUを利用した機械学習に対応するかテストするときは、
