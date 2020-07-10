@@ -6,7 +6,7 @@
 vimなどでDockerfileの編集。  
 `sudo docker build . -t <イメージ名>`でビルド。
 3. **コンテナの起動**  
-`sudo docker run -it -d -v $(pwd):/work/share -p <ポート番号>:8888 --rm --memory="32g" --memory-swap="-1" --cpus="8." --gpus=<利用したいGPU(allとか2とか'"device=1,2"'といった指定をする)> <イメージID> `
+`sudo docker run -it -d -v $(pwd):/work/share -p <ポート番号>:8888 --rm --memory="32g" --memory-swap="-1" --cpus="8." --gpus="0,1" <イメージID> `
 4. **リモートマシンからjupyter notebookに接続**  
 `sudo docker exec -it <コンテナのID> /bin/bash`でコンテナに入る。  
 `jupyter notebook --ip=0.0.0.0 --allow-root --no-browser --NotebookApp.password=<設定したトークン>`  
